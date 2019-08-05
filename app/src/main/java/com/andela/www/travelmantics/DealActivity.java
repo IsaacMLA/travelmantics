@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
-    private FirebaseDatabase mFirebase;
+public class DealActivity extends AppCompatActivity {
+    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseRef;
     EditText txtTitle;
     EditText txtDesc;
@@ -21,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mFirebase = FirebaseDatabase.getInstance();
-        mDatabaseRef = mFirebase.getReference().child("traveldeals");
+        FirebaseUtil.openFbReference("traveldeals");
+        mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
+        mDatabaseRef = FirebaseUtil.mDatabaseRef;
 
         txtTitle = (EditText) findViewById(R.id.txtTitle);
         txtPrice = (EditText) findViewById(R.id.txtPrice);
