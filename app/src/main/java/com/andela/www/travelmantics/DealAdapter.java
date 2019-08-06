@@ -1,6 +1,7 @@
 package com.andela.www.travelmantics;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -93,7 +94,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
 
 
 
-    public class DealViewHolder extends RecyclerView.ViewHolder{
+    public class DealViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvTitle;
         TextView tvDesc;
         TextView tvPrice;
@@ -103,12 +104,23 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
             tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(TravelDeal deal){
             tvTitle.setText(deal.getTitle());
             tvDesc.setText(deal.getDesc());
             tvPrice.setText(deal.getPrice());
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Log.d("click",String.valueOf(position));
+            TravelDeal selectedDeal = deals.get(position);
+            Intent intent = new Intent(v.getContext(),DealActivity.class);
+            intent.putExtra("Deal",selectedDeal);
+            v.getContext().startActivity(intent);
         }
     }
 }

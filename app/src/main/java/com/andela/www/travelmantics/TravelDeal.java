@@ -1,9 +1,12 @@
 package com.andela.www.travelmantics;
+
+import java.io.Serializable;
+
 /**
  * Created by DELL on 02/08/2019.
  */
 
-public class TravelDeal {
+public class TravelDeal implements Serializable {
     private String id;
     private String title;
     private String desc;
